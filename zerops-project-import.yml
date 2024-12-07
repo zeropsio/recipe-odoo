@@ -1,0 +1,32 @@
+#yamlPreprocessor=on
+project:
+  name: odoo
+
+services:
+  - hostname: db
+    type: postgresql@16
+    mode: HA
+    priority: 1
+    verticalAutoscaling:
+      cpuMode: DEDICATED
+      minVCpu: 2
+      minRam: 4
+      minDisk: 10
+
+  - hostname: storage
+    type: object-storage
+    priority: 1
+    objectStorageSize: 10
+    objectStoragePolicy: private
+    
+  - hostname: odoo
+    type: python@3.11
+    buildFromGit: https://github.com/zeropsio/recipe-odoo
+    enableSubdomainAccess: true
+    verticalAutoscaling:
+      cpuMode: DEDICATED
+      minVCpu: 2
+      maxVCpu: 4
+      minRam: 4
+    minContainers: 2
+    maxContainers: 4
