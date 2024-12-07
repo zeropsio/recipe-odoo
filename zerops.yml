@@ -6,6 +6,7 @@ zerops:
       envVariables:
         DEBIAN_FRONTEND: noninteractive
       prepareCommands:
+        - apt-get update
         - apt-get install -y python3-pip libldap2-dev libpq-dev libsasl2-dev wkhtmltopdf
       buildCommands:
         - git clone --depth=1 --branch 18.0 --single-branch https://github.com/odoo/odoo.git temp
