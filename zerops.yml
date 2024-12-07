@@ -9,6 +9,7 @@ zerops:
         - apt-get update
         - apt-get install -y python3-pip libldap2-dev libpq-dev libsasl2-dev wkhtmltopdf
       buildCommands:
+        - git clone https://github.com/odoo/odoo
         - python3 -m pip install --target ./vendor -r requirements.txt
       deployFiles:
         - addons
