@@ -31,7 +31,7 @@ zerops:
         DEBIAN_FRONTEND: noninteractive
       prepareCommands:
         - apt-get update
-        - apt-get install -y --no-install-recommends python3-pip libldap2-dev libpq-dev libsasl2-dev wkhtmltopdf
+        - apt-get install -y --no-install-recommends python3-pip libldap2-dev libpq-dev libsasl2-dev wkhtmltopdf postgresql-client
         - apt-get clean
         - rm -rf /var/lib/apt/lists/*
       initCommands:
