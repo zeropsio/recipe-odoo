@@ -2,9 +2,7 @@ zerops:
   - setup: odoo
     build:
       os: ubuntu
-      base:
-        - python@3.11
-        - nodejs@20
+      base: python@3.11
       envVariables:
         DEBIAN_FRONTEND: noninteractive
       prepareCommands:
