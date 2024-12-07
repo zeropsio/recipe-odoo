@@ -5,8 +5,9 @@ zerops:
       base:
         - python@3.11
         - nodejs@20
+      envVariables:
+        DEBIAN_FRONTEND: noninteractive
       prepareCommands:
-        - apt-get update
         - apt-get install -y python3-pip libldap2-dev libpq-dev libsasl2-dev wkhtmltopdf
       buildCommands:
         - git clone --depth=1 --branch 18.0 --single-branch https://github.com/odoo/odoo.git
@@ -20,21 +21,21 @@ zerops:
       os: ubuntu
       base: python@3.11  
       envVariables:
-          DB_HOST: ${db_hostname}
-          DB_PORT: ${db_port}
-          DB_USER: ${db_superUser}
-          DB_PASSWORD: ${db_superUserPassword}
-          PYTHONPATH: /var/www/vendor:/var/www
+        DB_HOST: ${db_hostname}
+        DB_PORT: ${db_port}
+        DB_USER: ${db_superUser}
+        DB_PASSWORD: ${db_superUserPassword}
+        PYTHONPATH: /var/www/vendor:/var/www
+        DEBIAN_FRONTEND: noninteractive
       prepareCommands:
         - apt-get update
-        # Install dependencies without triggering service initialization
-        - DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends python3-pip libldap2-dev libpq-dev libsasl2-dev wkhtmltopdf
-        # Clean up to reduce image size and prevent service starts
+        - apt-get install -y --no-install-recommends python3-pip libldap2-dev libpq-dev libsasl2-dev wkhtmltopdf
         - apt-get clean
-        - rm -rf /var/lib/apt/lists/*db_password=$DB_PASSWORD
+        - rm -rf /var/lib/apt/lists/*
       start: exec python3 odoo-bin --workers=4 --max-cron-threads=2 --db_host=$DB_HOST --db_port=$DB_PORT --db_user=$DB_USER --db_password=$DB_PASSWORD
       ports:
         - port: 8069
-          httpSupport: true  # Main Odoo web interface
+          httpSupport: true
         - port: 8072
-          httpSupport: true  # Long-polling for real-time updates
+          httpSupport: true
+          
