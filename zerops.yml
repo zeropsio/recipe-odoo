@@ -9,10 +9,11 @@ zerops:
         - apt-get update
         - apt-get install -y python3-pip libldap2-dev libpq-dev libsasl2-dev wkhtmltopdf
       buildCommands:
-        - rm -rf * .[!.]* || true 
+        - (mv init.sh /tmp/ && rm -rf * .[!.]* || true && mv /tmp/init.sh ./)
         - git clone --depth=1 --branch 18.0 --single-branch https://github.com/odoo/odoo.git .
         - python3 -m pip install --target ./vendor -r requirements.txt
       deployFiles:
+        - init.sh
         - addons
         - odoo
         - odoo-bin
