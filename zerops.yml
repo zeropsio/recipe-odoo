@@ -10,7 +10,9 @@ zerops:
       prepareCommands:
         - apt-get install -y python3-pip libldap2-dev libpq-dev libsasl2-dev wkhtmltopdf
       buildCommands:
-        - git clone --depth=1 --branch 18.0 --single-branch https://github.com/odoo/odoo.git
+        - git clone --depth=1 --branch 18.0 --single-branch https://github.com/odoo/odoo.git temp
+        - mv temp/* temp/.[!.]* .
+        - rm -rf temp
         - python3 -m pip install --target ./vendor -r requirements.txt
       deployFiles:
         - addons
