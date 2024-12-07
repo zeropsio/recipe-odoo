@@ -23,7 +23,7 @@ services:
     type: python@3.11
     buildFromGit: https://github.com/zeropsio/recipe-odoo
     enableSubdomainAccess: true
-    secretVariables:
+    envSecrets:
       DB_ODOO_USER: odoo
       DB_ODOO_PASSWORD: <@generateRandomString(<32>)>
     verticalAutoscaling:
