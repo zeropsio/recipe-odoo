@@ -36,7 +36,7 @@ zerops:
         - rm -rf /var/lib/apt/lists/*
       initCommands:
         - zsc execOnce INIT -- sh init.sh
-      start: exec python3 odoo-bin --workers=4 --max-cron-threads=2 --db_host=$DB_HOST --db_port=$DB_PORT --db_user=$DB_USER --db_password=$DB_PASSWORD
+      start: exec python3 odoo-bin --workers=4 --max-cron-threads=2 --db_host=$DB_HOST --db_port=$DB_PORT --db_user=$DB_ODOO_USER --db_password=$DB_ODOO_PASSWORD
       ports:
         - port: 8069
           httpSupport: true
