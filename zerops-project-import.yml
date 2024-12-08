@@ -31,5 +31,4 @@ services:
       minVCpu: 2
       maxVCpu: 4
       minRam: 4
-    minContainers: 2
-    maxContainers: 4
+    maxContainers: 1
